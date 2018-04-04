@@ -15,6 +15,10 @@
             background-color: #15adbc;
             font-size: 12px;
         }
+        img {
+            width: 100%;
+            height: 100%;
+        }
         .container {
             width: 100%;
             }
@@ -32,6 +36,7 @@
             box-sizing: border-box;
             padding: 2rem;
             font-size: 1.6rem;
+            overflow: hidden;
         }
         .comeon_note_submit{
             width: 5rem;
@@ -171,6 +176,11 @@
             top: 1rem;
             background-color: #000;
         }
+        .origin_pic{
+            width: 50%;
+            height: 15rem;
+            overflow: hidden;
+        }
     </style>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 </head>
@@ -187,14 +197,16 @@
         <div class="comeon_glass_right"></div>
         <div class="comeon_glass_midrect"></div>
     </div>
-    <div class="comeon_note">
-        <form id="form1">
-            <span>请上传您的照片：</span>
-            <input id="file_pic" type="file" accept="image/*"/>
+    <form id="form1"></form>
+    <div class="comeon_note">      
+        <span>请上传您的照片：</span>
+        <input id="file_pic" type="file" accept="image/*"/>
+        <div class="origin_pic">
             <img id="blah" src="#" alt="your image" />
-            <button class="comeon_note_submit" id="btn_upload">ok!</button>
-        </form>
+        </div>
+        <button class="comeon_note_submit" id="btn_upload">ok!</button>
     </div>
+    </form>
 </div>
 <script>
     $(document).ready(function(){
