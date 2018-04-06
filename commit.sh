@@ -1,4 +1,4 @@
 #!/bin/sh
 git add *
-git commit -m ''
+git commit -m '12'
 git push origin master

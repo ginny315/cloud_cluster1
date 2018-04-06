@@ -41,7 +41,7 @@ for(x,y,w,h) in faces:
     cv2.imwrite('lala1.jpg',crop_img)
 
 
-//cv2.imshow("Find Faces!",img)
+#cv2.imshow("Find Faces!",img)
 print image
 cv2.imwrite("test11.jpg",image)
 
