@@ -29,7 +29,7 @@ faces = faceCascade.detectMultiScale(
     scaleFactor= 1.10,  
     minNeighbors=3,  
     minSize=(5, 5),  
-    flags = cv2.cv.CV_HAAR_SCALE_IMAGE
+    flags = cv2.CASCADE_SCALE_IMAGE
 )  
   
  
