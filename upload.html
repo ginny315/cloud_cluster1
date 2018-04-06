@@ -211,6 +211,9 @@
 <script>
     $(document).ready(function(){
         $('#btn_upload').click(function(){
+            var fd = new FormData();
+            var photo = $("#file_pic")[0].files[0];
+            fd.append('photo',photo);
             $.ajax({
                 url: '/upload',
                 type: "POST",
