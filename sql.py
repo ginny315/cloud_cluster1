@@ -3,7 +3,7 @@ from pyspark import SparkConf, SparkContext
 from pyspark.sql import HiveContext
 
 conf = SparkConf().setAppName('spar_sql_test')
-sc = SQLContext(conf = conf)
+sc = SparkContext(conf = conf)
 
 #sqlContext = SQLContext(sc);
 hc = HiveContext(sc);
