@@ -33,7 +33,7 @@ class HbaseWrite():
     def createTable(self):
         col_list = []
         for i in range(1,4): 
-            col_list.append(ColumnDescriptor(name="CF:%s" % i, maxVersions=1))
+            col_list.append(ColumnDescriptor(name="CF%s:" % i, maxVersions=1))
         # col2 = ColumnDescriptor(name="feature:", maxVersions=1)
         self.client.createTable(self.tableName, col_list)
 
