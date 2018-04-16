@@ -18,14 +18,14 @@ from hbase.ttypes import *
 conf = SparkConf().setAppName("cat").setMaster("yarn")
 sc = SparkContext(conf=conf)
 
-find_path = '/var/www/html/Spark_SQL'
-# count = 9997
-# find_path = '/var/www/html/database'
+# find_path = '/var/www/html/Spark_SQL'
+count = 9997
+find_path = '/var/www/html/database'
 
 class HbaseWrite():
     def __init__(self):
-        self.tableName = 'cat_test'
-        # self.tableName = 'cat'
+        # self.tableName = 'cat_test'
+        self.tableName = 'cat'
         self.transport = TSocket.TSocket('student62', 9090)
         self.transport = TTransport.TBufferedTransport(self.transport)
         self.transport.open()
@@ -34,8 +34,8 @@ class HbaseWrite():
 
     def createTable(self):
         col_list = []
-        for i in range(1,4): 
-        # for i in range(1,1001):
+        # for i in range(1,4): 
+        for i in range(1,1001):
             col_list.append(ColumnDescriptor(name="CF%s:" % i, maxVersions=1))
         # col2 = ColumnDescriptor(name="feature:", maxVersions=1)
         self.client.createTable(self.tableName, col_list)
@@ -127,17 +127,25 @@ def main(_path):
             if find_file.search(f):
                 path_name = path
                 file_name = f
-                # rowT = count/1000 + 1
-                for num in range(1,4):
-                # for num in range(1,1001):
-                    WHB.write(str(1), 'CF%s:Name%s' % (num,num), file_name)
-                    WHB.write(str(1), 'CF%s:Feature%s' % (num,num), str(getdiff(getimage(path_name,file_name))))
-                    # WHB.write(str(rowT), 'CF%s:Name%s' % (num,num), file_name)
-                    # WHB.write(str(rowT), 'CF%s:Feature%s' % (num,num), getdiff(file_name))
-                    # count = count -1
+                rowT = count/1000 + 1
+                # for num in range(1,4):
+                for num in range(1,1001):
+                    # WHB.write(str(1), 'CF%s:Name%s' % (num,num), file_name)
+                    # WHB.write(str(1), 'CF%s:Feature%s' % (num,num), str(getdiff(getimage(path_name,file_name))))
+                    WHB.write(str(rowT), 'CF%s:Name%s' % (num,num), file_name)
+                    WHB.write(str(rowT), 'CF%s:Feature%s' % (num,num), getdiff(file_name))
+                    count = count -1
 
 if __name__ == '__main__':
     main(find_path)
+    # for j in range(0,10):
+    #     rdd=[]
+    #     for i in range(0,50):
+#         rdd.append(img[i])
+
+#     data = sc.parallelize(rdd,16)
+#     data1 = data.map(lambda x:[x[0],getdiff(x[0],x[1])]).collect()
+#     img = img[:0]+img[100:]
     
 
 
