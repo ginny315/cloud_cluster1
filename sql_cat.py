@@ -19,7 +19,7 @@ conf = SparkConf().setAppName("cat").setMaster("yarn")
 sc = SparkContext(conf=conf)
 
 # find_path = '/var/www/html/Spark_SQL'
-count = 9997
+count = 1
 find_path = '/var/www/html/database'
 
 class HbaseWrite():
@@ -134,7 +134,7 @@ def main(_path):
                     # WHB.write(str(1), 'CF%s:Feature%s' % (num,num), str(getdiff(getimage(path_name,file_name))))
                     WHB.write(str(rowT), 'CF%s:Name%s' % (num,num), file_name)
                     WHB.write(str(rowT), 'CF%s:Feature%s' % (num,num), getdiff(file_name))
-                    count = count -1
+                    count = count + 1
 
 if __name__ == '__main__':
     main(find_path)
