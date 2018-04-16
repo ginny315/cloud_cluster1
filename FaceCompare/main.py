@@ -41,13 +41,13 @@ def getss(list):
     return ss
 
 #获取每行像素平均值  
-def getdiff(img2):
+def getdiff(img):
     #定义边长
     Sidelength=30
     #缩放图像
-    img2=cv2.resize(img2,(Sidelength,Sidelength),interpolation=cv2.INTER_CUBIC)
+    img2=cv2.resize(img,(Sidelength,Sidelength),interpolation=cv2.INTER_CUBIC)
     #灰度处理
-    gray=cv2.cvtColor(img2,cv2.COLOR_BGR2GRAY)
+    gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
     #avglist列表保存每行像素平均值
     avglist=[]
     #计算每行均值，保存到avglist列表
@@ -65,7 +65,15 @@ print('img2:',getss(diff1))
 diff11=getdiff(img1)
 print('img1:',getss(diff11))
 
-print('similarity',getss(diff1)-getss(diff11))
+def getavg(diff1,diff11):
+    difflist=[]
+    for i in range(30):
+        avg1=diff1[i]-diff11[i]
+        difflist.append(avg1)
+    return difflist
+result_value = getavg(diff1,diff11)
+
+print('similarity',getss(result_value))
 
 x=range(30)  
 

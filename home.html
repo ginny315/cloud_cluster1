@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="author" content="" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" /> 
+    <meta name="viewport" content="width=device-width,minimal-ui=yes,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <style>
+        html,body {
+            width: 100%;
+            height: 100%;
+            background-color: #15adbc;
+            font-size: 12px;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        .container {
+            width: 100%;
+            }
+        .comeon_note {
+            z-index: 5;
+            position: relative;
+            width: 35rem;
+            height: 25rem;
+            border-radius: 3rem;
+            border: 2px solid #726F6F;
+            background-color: #d8d8d8;
+            margin: 0 auto;
+            margin-top: 1rem;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 2rem;
+            font-size: 1.6rem;
+            overflow: hidden;
+        }
+        .comeon_note_submit{
+            width: 5rem;
+            height: 5rem;
+            background-color: #726F6F;
+            color: #d8d8d8;
+            text-align: center;
+            line-height: 5rem;
+            position: absolute;
+            border-radius: 2.5rem;
+            font-size: 2rem;
+            border: 0px solid #111;
+            left: 47%;
+            bottom: 0.5rem;
+        }
+        .comeon_hat {
+            width: 10rem;
+            height: 10rem;
+            border: 0px solid #979797;
+            margin: 0 auto;
+            position: relative;
+            margin-top: 1rem;
+            z-index: 15;
+            -moz-animation: hat 3s 1 0s forwards;
+            -ms-animation: hat 3s 1 0s forwards;
+            -o-animation: hat 3s 1 0s forwards;
+            -webkit-animation: hat 3s 1 0s forwards;
+            animation: hat 3s 1 0s forwards;
+        }
+        .comeon_hat_roundup {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 2.5rem;
+            background-color: #726F6F;
+            position: absolute;
+            top: -1.5rem;
+            left: 2.5rem;
+            -moz-transform: scaleY(0.5);
+            -ms-transform: scaleY(0.5);
+            -o-transform: scaleY(0.5);
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+            border: 0px solid #979797;
+            z-index: 10;
+        }
+        .comeon_hat_rect {
+            width: 5rem;
+            height: 6rem;
+            background-color: #696969;
+            border: 0px solid #979797;
+            position: absolute;
+            top: 1.2rem;
+            left: 2.5rem;
+            z-index: 9;
+        }
+        .comeon_hat_rectdown {
+            width: 5rem;
+            height: 0.8rem;
+            background-color: #D8D8D8;
+            border: 0px solid #979797;
+            position: absolute;
+            top: 7.2rem;
+            left: 2.5rem;
+            z-index: 9;
+        }
+        .comeon_hat_rounddown {
+            width: 12rem;
+            height: 12rem;
+            border-radius: 6rem;
+            background-color: #726F6F;
+            position: absolute;
+            top: 2rem;
+            left: -1rem;
+            -moz-transform: scaleY(0.3);
+            -ms-transform: scaleY(0.3);
+            -o-transform: scaleY(0.3);
+            -webkit-transform: scaleY(0.3);
+            transform: scaleY(0.3);
+            border: 0px solid #979797;
+            z-index: 10;
+            box-shadow: inset 0px 1px 3px #fff;
+            z-index: 8;
+        }
+        .comeon_glass {
+            width: 8rem;
+            height: 4rem;
+            border: 0px solid #979797;
+            position: absolute;
+            z-index: 11;
+            left: calc(50% - 4rem);
+        }
+        .comeon_glass .comeon_glass_left {
+            width: 3.5rem;
+            height: 2.5rem;
+            background-color: #000;
+            position: absolute;
+            border-radius: 1rem;
+        }
+        .comeon_glass .comeon_glass_left:before,
+        .comeon_glass .comeon_glass_right:before {
+            content: '';
+            width: 3rem;
+            height: 0.5rem;
+            position: absolute;
+            top: 0.5rem;
+            background-color: #000;
+            -moz-transform: rotate(15deg);
+            -ms-transform: rotate(15deg);
+            -o-transform: rotate(15deg);
+            -webkit-transform: rotate(15deg);
+            transform: rotate(15deg);
+        }
+        .comeon_glass .comeon_glass_left:before {
+            left: -3rem;
+        }
+        .comeon_glass .comeon_glass_right:before {
+            right: -3rem;
+            -moz-transform: rotate(-15deg);
+            -ms-transform: rotate(-15deg);
+            -o-transform: rotate(-15deg);
+            -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
+        }
+        .comeon_glass .comeon_glass_right {
+            width: 3.5rem;
+            height: 2.5rem;
+            background-color: #000;
+            position: absolute;
+            border-radius: 1rem;
+            right: 0;
+        }
+        .comeon_glass .comeon_glass_midrect {
+            width: 3rem;
+            height: 0.5rem;
+            position: absolute;
+            left: 3.5rem;
+            top: 1rem;
+            background-color: #000;
+        }
+        .origin_pic{
+            width: 50%;
+            height: 15rem;
+            overflow: hidden;
+        }
+    </style>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="comeon_hat">
+        <div class="comeon_hat_roundup"></div>
+        <div class="comeon_hat_rect"></div>
+        <div class="comeon_hat_rectdown"></div>
+        <div class="comeon_hat_rounddown"></div>
+    </div>
+    <div class="comeon_glass">
+        <div class="comeon_glass_left"></div>
+        <div class="comeon_glass_right"></div>
+        <div class="comeon_glass_midrect"></div>
+    </div>
+    <form id="form1" method="post" enctype="multipart/form-data" action="/upload/">
+        <div class="comeon_note">
+            <span>请上传您的照片：</span>
+            <input id="file_pic" type="file" accept="image/*" name="picture" enctype="multpart/form-data"/>
+            <div class="origin_pic">
+                <img id="blah" src="#" alt="your image" />
+            </div>
+            <button class="comeon_note_submit" id="btn_upload">ok!</button>
+        </div>
+    </form>
+</div>
+<script>
+    $(document).ready(function(){
+        {#$('#btn_upload').click(function(){#}
+        {#    var fd = new FormData();#}
+        {#    var photo = $("#file_pic")[0].files[0];#}
+        {#    fd.append('photo',photo);#}
+        {#    console.log('fd=',fd);#}
+        {#    $.ajax({#}
+        {#        url: '/upload/',#}
+        {#        type: "POST",#}
+        {#        data: fd,#}
+        {#        processData: false,  // 告诉jQuery不要去处理发送的数据#}
+        {#        contentType: false,   // 告诉jQuery不要去设置Content-Type请求头#}
+        {#        success: function(value) {#}
+        {#            //if(value.code == '1')#}
+        {#                alert('upload success!');#}
+        {#                console.log('value=',value);#}
+        {#                //setTimeout(function(){#}
+        {#                //    window.location = 'home.html';#}
+        {#                //},1000);#}
+        {#        }#}
+        {#    })#}
+        {#})#}
+
+        $("#file_pic").change(function(){
+            readURL(this);
+        });
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                
+                reader.onload = function (e) {
+                    $('#blah').attr('src', e.target.result);
+                }
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+   })
+
+</script>
+</body>
+</html>
