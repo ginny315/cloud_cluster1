@@ -24,7 +24,7 @@ find_path = '/var/www/html/database'
 
 class HbaseWrite():
     def __init__(self):
-        self.tableName = 'database'
+        self.tableName = 'database_test'
         self.transport = TSocket.TSocket('student62', 9090)
         self.transport = TTransport.TBufferedTransport(self.transport)
         self.transport.open()
@@ -61,9 +61,15 @@ class HbaseWrite():
         else:
             return 'Error'
 
+    def read_column(self):
+        get_data = self.client.getColumnDescriptors(self.tableName)
+        if get_data:
+            return get_data.value
+        else
+            return 'Error'
 
-def find_img(_path):
-    
+
+def find_img(_path):   
     find_file = re.compile(r'^[0-9a-zA-Z\_]*.jpg$')
     find_walk = os.walk(_path)
     img=[]
@@ -77,9 +83,12 @@ def find_img(_path):
                 img_withname.append(f)
                 img_withname.append(cv2.imread(path_name + '/' + file_name))
                 img.append(img_withname)
-                
-#                 WHB.write(path_name, file_name)  
+                #                 WHB.write(path_name, file_name)  
     return img 
+
+def get_img_fromdb():
+    WHB = HbaseWrite()
+    return WHB.read_column()
 
 def getdiff(name,img):
     Sidelength=30
@@ -91,34 +100,23 @@ def getdiff(name,img):
         avg=sum(gray[i])/len(gray[i])
         avglist.append(avg)
     WHB = HbaseWrite()
-    WHB.write_feature(str(avglist), name)
-    print "insert!"
+    WHB.write_feature(str(avglist), name) 
     return avglist
-    
 
-img = find_img(find_path)
-#print(data.glom().collect())
-#print(img[0])
+l = get_img_fromdb()
+print(l)
     
-for j in range(0,200):
-    rdd=[]
-    for i in range(0,50):
-        rdd.append(img[i])
+print("====================start distributed computing===============================")
+# img = find_img(find_path)
+    
+# for j in range(0,200):
+#     rdd=[]
+#     for i in range(0,50):
+#         rdd.append(img[i])
 
-        #print(rdd.collect())
-    data = sc.parallelize(rdd,16)
-    #print(data.glom().collect())
-    data1 = data.map(lambda x:[x[0],getdiff(x[0],x[1])]).collect()
-    img = img[:0]+img[100:]
-#     for i in range(0,100):
-#         img.pop(0)
-    print("---------------------------------------------------")
-#print(data1)
-#WHB = HbaseWrite()
-#for i in range(len(data1)):
-#    print(data1[i][0])
-#    print(data1[i][1])
-#    WHB.write_feature('feature:'+str(data1[i][1]), data1[i][0])
-print("===================================================")
+#     data = sc.parallelize(rdd,16)
+#     data1 = data.map(lambda x:[x[0],getdiff(x[0],x[1])]).collect()
+#     img = img[:0]+img[100:]
+print("==============================================================================")
 
 
