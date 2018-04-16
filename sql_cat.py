@@ -12,8 +12,8 @@ from thrift.protocol import TBinaryProtocol
 from hbase import Hbase
 from hbase.ttypes import *
 
-sys.setdefaultencoding('utf8')
-reload(sys)
+# sys.setdefaultencoding('utf8')
+# reload(sys)
 
 conf = SparkConf().setAppName("cat").setMaster("yarn")
 sc = SparkContext(conf=conf)
