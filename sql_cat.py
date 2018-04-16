@@ -32,7 +32,7 @@ class HbaseWrite():
 
     def createTable(self):
         col_list = []
-        for i in range(1,4) 
+        for i in range(1,4): 
             col_list.append(ColumnDescriptor(name="CF:%s" % i, maxVersions=1))
         # col2 = ColumnDescriptor(name="feature:", maxVersions=1)
         self.client.createTable(self.tableName, col_list)
@@ -120,7 +120,7 @@ def main(_path):
             if find_file.search(f):
                 path_name = path
                 file_name = f
-                for num in range(1,4) # 3 photos
+                for num in range(1,4):
                     WHB.write(1, 'CF%s:Name%s' % (num,num), file_name)
                     WHB.write(1, 'CF%s:Feature%s' % (num,num), getdiff(file_name))
 
