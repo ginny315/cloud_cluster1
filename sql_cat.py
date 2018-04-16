@@ -41,7 +41,7 @@ class HbaseWrite():
         self.client.createTable(self.tableName, col_list)
 
     def write(self, row, column_key, column_value):
-        self.client.mutateRow(self.tableName, row, [Mutation(column=column_value, value=column_value)])
+        self.client.mutateRow(self.tableName, row, [Mutation(column=column_key, value=column_value)])
 
     def read(self, PicName):
         row = PicName.split('.')[0]
