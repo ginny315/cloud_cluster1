@@ -117,7 +117,7 @@ def getimage(path_name, file_name):
 # l = get_img_fromdb()
 # print(l)
 
-def main(_path):
+def main(_path, count):
     WHB = HbaseWrite()
     WHB.createTable()
     find_file = re.compile(r'^[0-9a-zA-Z\_]*.jpg$') 
@@ -137,7 +137,7 @@ def main(_path):
                     count = count + 1
 
 if __name__ == '__main__':
-    main(find_path)
+    main(find_path, count)
     # for j in range(0,10):
     #     rdd=[]
     #     for i in range(0,50):
