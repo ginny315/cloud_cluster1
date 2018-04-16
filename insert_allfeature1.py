@@ -52,21 +52,21 @@ class HbaseWrite():
         # TypeError: mutateRow() takes exactly 5 arguments (4 given)
         self.client.mutateRow(self.tableName, row, [Mutation(column='data:feature', value=PicFeature)])
 
-    def read(self, tableName, PicName):
+    def read(self, PicName):
         row = PicName.split('.')[0]
         data_type = PicName.split('.')[1]
-        get_data = self.client.get(tableName, row, 'data:%s' % data_type, {})[0]
+        get_data = self.client.get(self.tableName, row, 'data:%s' % data_type, {})[0]
         if get_data:
             return get_data.value
         else:
             return 'Error'
 
     def read_column(self):
-        get_data = self.client.getColumnDescriptors(self.tableName)
-        if get_data:
-            return get_data.value
-        else
-            return 'Error'
+        # get_data = self.client.getColumnDescriptors(self.tableName)
+        # if get_data:
+        #     return get_data.value
+        # else
+        #     return 'Error'
 
 
 def find_img(_path):   
@@ -87,8 +87,17 @@ def find_img(_path):
     return img 
 
 def get_img_fromdb():
+    find_file = re.compile(r'^[0-9a-zA-Z\_]*.jpg$')
+    find_walk = os.walk(_path)
     WHB = HbaseWrite()
-    return WHB.read_column()
+    for path, dirs, files in find_walk:
+        for f in files:
+            if find_file.search(f):
+                # path_name = path
+                file_name = f
+                WHB.read(file_name)
+                
+     
 
 def getdiff(name,img):
     Sidelength=30
@@ -103,11 +112,12 @@ def getdiff(name,img):
     WHB.write_feature(str(avglist), name) 
     return avglist
 
+print(====================start find image===============================)
+img = find_img(find_path)
 l = get_img_fromdb()
 print(l)
     
 print("====================start distributed computing===============================")
-# img = find_img(find_path)
     
 # for j in range(0,200):
 #     rdd=[]
