@@ -108,7 +108,8 @@ def getdiff(img):
     return avglist
 
 def getimage(path_name, file_name):
-    cv2.imread(path_name + '/' + file_name)
+    return cv2.imread(path_name + '/' + file_name)
+
 
 
 # print(====================start find image===============================)
