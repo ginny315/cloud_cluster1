@@ -19,11 +19,13 @@ conf = SparkConf().setAppName("cat").setMaster("yarn")
 sc = SparkContext(conf=conf)
 
 find_path = '/var/www/html/Spark_SQL'
+count = 9997
 # find_path = '/var/www/html/database'
 
 class HbaseWrite():
     def __init__(self):
         self.tableName = 'cat_test'
+        # self.tableName = 'cat'
         self.transport = TSocket.TSocket('student62', 9090)
         self.transport = TTransport.TBufferedTransport(self.transport)
         self.transport.open()
@@ -33,12 +35,13 @@ class HbaseWrite():
     def createTable(self):
         col_list = []
         for i in range(1,4): 
+        # for i in range(1,1001):
             col_list.append(ColumnDescriptor(name="CF%s:" % i, maxVersions=1))
         # col2 = ColumnDescriptor(name="feature:", maxVersions=1)
         self.client.createTable(self.tableName, col_list)
 
     def write(self, row, column_key, column_value):
-        self.client.mutateRow(self.tableName, row, [Mutation(column=columu_value, value=columu_value)])
+        self.client.mutateRow(self.tableName, row, [Mutation(column=column_value, value=column_value)])
 
     def read(self, PicName):
         row = PicName.split('.')[0]
@@ -113,17 +116,21 @@ def getdiff(img):
 def main(_path):
     WHB = HbaseWrite()
     WHB.createTable()
-    find_file = re.compile(r'^[0-9a-zA-Z\_]*.jpg$')
+    find_file = re.compile(r'^[0-9a-zA-Z\_]*.jpg$') 
     find_walk = os.walk(_path)
     for path, dirs, files in find_walk:
         for f in files:
             if find_file.search(f):
                 path_name = path
                 file_name = f
+                # rowT = count/1000 + 1
                 for num in range(1,4):
+                # for num in range(1,1001):
                     WHB.write(1, 'CF%s:Name%s' % (num,num), file_name)
                     WHB.write(1, 'CF%s:Feature%s' % (num,num), getdiff(file_name))
-
+                    # WHB.write(rowT, 'CF%s:Name%s' % (num,num), file_name)
+                    # WHB.write(rowT, 'CF%s:Feature%s' % (num,num), getdiff(file_name))
+                    # count = count -1
 
 if __name__ == '__main__':
     main(find_path)
