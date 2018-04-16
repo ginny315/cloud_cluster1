@@ -19,7 +19,7 @@ conf = SparkConf().setAppName("cat").setMaster("yarn")
 sc = SparkContext(conf=conf)
 
 find_path = '/var/www/html/Spark_SQL'
-count = 9997
+# count = 9997
 # find_path = '/var/www/html/database'
 
 class HbaseWrite():
@@ -126,10 +126,10 @@ def main(_path):
                 # rowT = count/1000 + 1
                 for num in range(1,4):
                 # for num in range(1,1001):
-                    WHB.write(1, 'CF%s:Name%s' % (num,num), file_name)
-                    WHB.write(1, 'CF%s:Feature%s' % (num,num), getdiff(file_name))
-                    # WHB.write(rowT, 'CF%s:Name%s' % (num,num), file_name)
-                    # WHB.write(rowT, 'CF%s:Feature%s' % (num,num), getdiff(file_name))
+                    WHB.write(str(1), 'CF%s:Name%s' % (num,num), file_name)
+                    WHB.write(str(1), 'CF%s:Feature%s' % (num,num), getdiff(file_name))
+                    # WHB.write(str(rowT), 'CF%s:Name%s' % (num,num), file_name)
+                    # WHB.write(str(rowT), 'CF%s:Feature%s' % (num,num), getdiff(file_name))
                     # count = count -1
 
 if __name__ == '__main__':
