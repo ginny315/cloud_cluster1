@@ -127,7 +127,7 @@ def main(_path):
                 for num in range(1,4):
                 # for num in range(1,1001):
                     WHB.write(str(1), 'CF%s:Name%s' % (num,num), file_name)
-                    WHB.write(str(1), 'CF%s:Feature%s' % (num,num), getdiff(file_name))
+                    WHB.write(str(1), 'CF%s:Feature%s' % (num,num), str(getdiff(file_name)))
                     # WHB.write(str(rowT), 'CF%s:Name%s' % (num,num), file_name)
                     # WHB.write(str(rowT), 'CF%s:Feature%s' % (num,num), getdiff(file_name))
                     # count = count -1
